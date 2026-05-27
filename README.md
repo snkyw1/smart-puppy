@@ -12,4 +12,10 @@ AI相关功能基于 [xiaozhi_esp32](https://github.com/78/xiaozhi-esp32) v2.2.6
 - 删除其他开发板、codec支持
 - 引出C语言函数接口
 
+
+[lvgl_font_split.py](./lvgl_font_split.py)的作用将lvgl font convert生成的.c文件，拆分成.c和.bin，.bin为原先数组glyph_bitmap和glyph_dsc中的内容。使用示例：
+```bash
+python lvgl_font_split.py main/lcd/font/han_sans_cn_medium_16.c -o main/lcd/font/han_sans_cn_medium_16
+```
+
 更多内容参考[AGENTS.md](./AGENTS.md)
