@@ -1,0 +1,13 @@
+CompileFlags:
+  Remove:
+    [
+      -mlongcalls,
+      -mdisable-hardware-atomics,
+      -fno-shrink-wrap,
+      -fstrict-volatile-bitfields,
+      -fno-tree-switch-conversion,
+    ]
+Diagnostics:
+  Suppress: [-Werror, -Wunused-lambda-capture]
+  Includes:
+    IgnoreHeader: [freertos/FreeRTOS.h, lvgl.h, src/core/lv_obj_private.h]

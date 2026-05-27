@@ -1,0 +1,212 @@
+menu "Smart-Puppy Configuration"
+    menu "LCD"
+        config LCD_WIDTH
+        int "lcd width"
+        default 320
+
+        config LCD_HEIGHT
+        int "lcd height"
+        default 240
+        
+        config LCD_GPIO_SCK
+        int "lcd gpio sck"
+        default 2
+
+        config LCD_GPIO_SDA
+        int "lcd gpio sda"
+        default 43
+
+        config LCD_GPIO_DC
+        int "lcd gpio dc"
+        default 44
+
+        config LCD_GPIO_CS
+        int "lcd gpio cs"
+        default 1
+
+        config LCD_GPIO_RST
+        int "lcd gpio rst"
+        default 42
+
+        config LCD_GPIO_BLK
+        int "lcd gpio blk"
+        default 41
+
+        config TOUCH_KEY_GPIO
+        int "touch key gpio"
+        default 45
+
+    endmenu
+
+    menu "Audio"
+        config AUDIO_INPUT_SAMPLE_RATE
+        int "Audio input sample rate"
+        default 16000
+
+        config AUDIO_OUTPUT_SAMPLE_RATE
+        int "Audio output sample rate"
+        default 24000
+        
+        config AUDIO_I2S_GPIO_SPK_BCLK
+        int "speaker io bclk"
+        default 12
+
+        config AUDIO_I2S_GPIO_SPK_WS
+        int "speaker io ws"
+        default 11
+
+        config AUDIO_I2S_GPIO_SPK_DIN
+        int "speaker io din"
+        default 13
+
+        config AUDIO_GPIO_PA_CTRL
+        int "power amplifier io ctrl"
+        default 14
+
+        config AUDIO_I2S_GPIO_MIC_BCLK
+        int "microphone io bclk"
+        default 7
+
+        config AUDIO_I2S_GPIO_MIC_WS
+        int "microphone io ws"
+        default 15
+
+        config AUDIO_I2S_GPIO_MIC_DOUT
+        int "microphone io dout"
+        default 16
+
+    endmenu
+
+    menu "Battery Monitor"
+        choice BAT_ADC_UNIT
+            prompt "Battery ADC unit"
+            default BAT_ADC_UNIT_1
+            config BAT_ADC_UNIT_1
+                bool "ADC Unit 1"
+            config BAT_ADC_UNIT_2
+                bool "ADC Unit 2"
+        endchoice
+      
+        choice BAT_ADC_ATTEN
+            prompt "Battery ADC attenuation"
+            default BAT_ADC_ATTEN_DB_2_5
+            config BAT_ADC_ATTEN_DB_0
+                bool "0dB attenuation(100%)"
+            config BAT_ADC_ATTEN_DB_2_5
+                bool "2.5dB attenuation(75%)"
+            config BAT_ADC_ATTEN_DB_6
+                bool "6dB attenuation(50%)"
+            config BAT_ADC_ATTEN_DB_12
+                bool "12dB attenuation(25%)"
+        endchoice
+      
+        config BAT_ADC_CHANNEL
+                int "ADC CHANNEL 0~9"
+                default 9
+
+        config BAT_RESISTOR_UPPER
+            int "Battery voltage divider upper resistor (ohms)"
+            default 240000
+            help
+                Upper resistor value in the battery voltage divider circuit.
+
+        config BAT_RESISTOR_LOWER
+            int "Battery voltage divider lower resistor (ohms)"
+            default 100000
+            help
+                Lower resistor value in the battery voltage divider circuit.
+
+        config BAT_GPIO_CHARGING
+            int "Battery charging detect GPIO"
+            default 9
+            help
+                GPIO for detecting charging status (low = charging).
+    endmenu
+
+    menu "Accelerometer (SC7A20H)"
+        config ACCEL_I2C_SDA_IO
+            int "Accelerometer I2C SDA GPIO"
+            default 47
+
+        config ACCEL_I2C_SCL_IO
+            int "Accelerometer I2C SCL GPIO"
+            default 48
+
+        config ACCEL_INT1_GPIO
+            int "Accelerometer INT1 GPIO (-1 for NC)"
+            default -1
+
+        config ACCEL_INT2_GPIO
+            int "Accelerometer INT2 GPIO"
+            default 21
+    endmenu
+
+    menu "Servo"
+        config SERVO_GPIO_LF
+            int "Servo front left leg GPIO"
+            default 17
+
+        config SERVO_GPIO_LR
+            int "Servo rear left leg GPIO"
+            default 18
+
+        config SERVO_GPIO_RF
+            int "Servo front right leg GPIO"
+            default 3
+
+        config SERVO_GPIO_RR
+            int "Servo rear right leg GPIO"
+            default 46
+
+        config SERVO_GPIO_TAIL
+            int "Servo tail GPIO"
+            default 38
+    endmenu
+
+    config SERVO_DEBUG
+    bool "Open servo debug mode"
+    default n
+
+    menu "IOT ESP-NOW"
+        config IOT_ESPNOW_PEER_MAC
+            string "Peer MAC Address"
+            default "FF:FF:FF:FF:FF:FF"
+            help
+                对端设备的 MAC 地址，格式为 "AA:BB:CC:DD:EE:FF"。
+
+        config IOT_ESPNOW_CHANNEL
+            int "ESP-NOW Channel (1-14)"
+            range 1 14
+            default 6
+            help
+                未连接 WiFi 时使用的 ESP-NOW 通信信道。
+                若已连接 WiFi，则自动使用当前 WiFi 信道。
+    endmenu
+
+    menu "IOT Alibaba Cloud"
+        config ALI_IOT_MQTT_URL
+            string "Mqtt Url"
+            default ""
+            help
+                阿里云IoT URL, 例如: mqtts://iot-xxx.mqtt.iothub.aliyuncs.com
+
+        config ALI_IOT_PRODUCT_KEY
+            string "Product Key"
+            default ""
+            help
+                阿里云IoT产品 ProductKey。
+
+        config ALI_IOT_DEVICE_NAME
+            string "Device Name"
+            default ""
+            help
+                阿里云IoT设备 DeviceName。
+
+        config ALI_IOT_DEVICE_SECRET
+            string "Device Secret"
+            default ""
+            help
+                阿里云IoT设备 DeviceSecret。
+    endmenu
+
+endmenu

@@ -1,0 +1,18 @@
+# 基础风格：WebKit
+BasedOnStyle: WebKit
+
+# 大括号换行（关键！让 if / else / for / while 大括号单独一行）
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterControlStatement: true   # if/for/while 前换行
+  BeforeElse: true              # else 前换行
+
+# 允许短的 if 语句单行
+AllowShortIfStatementsOnASingleLine: WithoutElse
+
+# 宏对齐
+AlignConsecutiveMacros: AcrossComments
+
+# 对齐连续的尾随注释
+AlignTrailingComments: true

@@ -1,0 +1,12 @@
+{
+    "clangd.arguments": [
+        "--header-insertion=never",
+        "--fallback-style=WebKit",
+        "--background-index",
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "--query-driver=${userHome}/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g*"
+    ],
+    "search.exclude": {
+        "build": true
+    }
+}
