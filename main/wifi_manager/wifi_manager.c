@@ -127,9 +127,14 @@ static void event_handler(void* event_handler_arg, esp_event_base_t event_base, 
     }
 }
 
-bool wifi_manager_is_start()
+bool wifi_manager_is_started()
 {
     return wifi_is_started;
+}
+
+bool wifi_manager_is_connected()
+{
+    return wifi_is_connected;
 }
 
 void wifi_manager_smartconfig(bool enable)

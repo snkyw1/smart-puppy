@@ -35,12 +35,11 @@ static void light_recv_cb(int level)
 
 static void conn_status_cb(bool connected)
 {
-    lvgl_port_lock(0);
-
     if (!label_ali_status) {
-        lvgl_port_unlock();
         return;
     }
+
+    lvgl_port_lock(0);
 
     if (connected) {
         lv_label_set_text(label_ali_status, "aliyun: connected");
@@ -52,25 +51,17 @@ static void conn_status_cb(bool connected)
     }
 
     lvgl_port_unlock();
-
-    if (label_ali_status) {
-        lv_label_set_text(label_ali_status, "aliyun: connected");
-        lv_obj_add_style(label_ali_status, &style_text_color_green, LV_PART_MAIN);
-    }
-
-    lvgl_port_unlock();
 }
 
 static void recv_cb(const espnow_led_cmd_t* cmd)
 {
     if (strncmp(cmd->cmd, "led", ESPNOW_LED_CMD_LEN) != 0) return;
 
-    lvgl_port_lock(0);
-
     if (sw_led == NULL || label_led_state == NULL) {
-        lvgl_port_unlock();
         return;
     }
+
+    lvgl_port_lock(0);
 
     if (cmd->value == active_level) {
         led_is_on = true;
@@ -115,7 +106,7 @@ static void screen_exit_cb(void)
 
 static void screen_loaded_cb()
 {
-    if (!wifi_manager_is_start()) return;
+    if (!wifi_manager_is_connected()) return;
 
     esp_err_t ret = espnow_mgr_init();
     if (ret != ESP_OK) {

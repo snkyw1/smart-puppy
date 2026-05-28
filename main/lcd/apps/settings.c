@@ -130,7 +130,7 @@ static void init_wifi_screen()
     lv_obj_t* switch_wifi = lv_switch_create(content);
     lv_obj_align(switch_wifi, LV_ALIGN_CENTER, 0, 0);
     lv_obj_add_event_cb(switch_wifi, switch_wifi_cb, LV_EVENT_VALUE_CHANGED, NULL);
-    if (wifi_manager_is_start()) {
+    if (wifi_manager_is_started()) {
         lv_obj_add_state(switch_wifi, LV_STATE_CHECKED);
     }
     

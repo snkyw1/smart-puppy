@@ -41,7 +41,7 @@
 static uint32_t g_full_duty = 0;
 static TaskHandle_t servo_task_handle;
 
-static int8_t servo_offsets[SERVO_CHANNEL_NUM] = { 0,-5,-7,0,0 };
+static int8_t servo_offsets[SERVO_CHANNEL_NUM] = { -4,-6,2,-2,0 };
 static int16_t servo_angle[SERVO_CHANNEL_NUM] = { 0 };
 
 static uint32_t calculate_duty(uint8_t angle)

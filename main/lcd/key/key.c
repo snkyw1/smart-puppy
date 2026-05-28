@@ -64,20 +64,20 @@ static void button_event_cb(void* arg, void* data)
 
     // xTaskNotifyGive(key_task_handle);
 
+    lvgl_port_lock(0);
     if (button_event == BUTTON_MULTIPLE_CLICK)
     {
         // printf("button event: MULTIPLE_CLICK 3\n");
         key_invert();
-        lvgl_port_lock(0);
         status_loop_invert();
-        lvgl_port_unlock();
         button_event = BUTTON_NONE_PRESS;
+        lvgl_port_unlock();
         return;
     }
 
-    lvgl_port_lock(0);
     lv_indev_read(button_indev);
     lv_indev_read(button_indev);
+
     lvgl_port_unlock();
 }
 

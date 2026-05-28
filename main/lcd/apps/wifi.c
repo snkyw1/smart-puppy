@@ -195,7 +195,7 @@ static void switch_smartconfig_cb(lv_event_t* e)
 
 static void symbol_config_cb(lv_event_t* e)
 {
-    if (!wifi_manager_is_start()) return;
+    if (!wifi_manager_is_started()) return;
     lv_obj_t* msgbox = my_msgbox_create(true);
     lv_msgbox_add_title(msgbox, "smartconfig on-off");
 
